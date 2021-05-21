@@ -10,12 +10,12 @@ import pl.zti.atlas.service.FishService;
 import java.util.List;
 
 @RestController
-public class AtlasController {
+public class FishController {
 
     private final FishService fishService;
 
     @Autowired
-    public AtlasController(FishService fishService) {
+    public FishController(FishService fishService) {
         this.fishService = fishService;
     }
 
