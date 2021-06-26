@@ -1,23 +1,20 @@
 package pl.zti.atlas.model;
 
-import lombok.Setter;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 
-@ToString
+@Data
 public class User {
 
     @Id
-    @Getter @Setter
     private String id;
+    private String email;
+    private String password;
 
-    @Getter @Setter
-    private String name;
-
-    public User(String id, String name) {
+    public User(String id, String email, String password) {
         this.id = id;
-        this.name = name;
+        this.email = email;
+        this.password = password;
     }
 
 }

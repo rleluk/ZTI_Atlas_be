@@ -1,23 +1,31 @@
 package pl.zti.atlas.model;
 
-import lombok.Setter;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 
-@ToString
+@Data
 public class Fish {
 
     @Id
-    @Getter @Setter
     private String id;
-
-    @Getter @Setter
     private String name;
+    private String species;
+    private String waterType;
+    private String protectionPeriod;
+    private String protectionLength;
+    private String description;
+    private String imageUrl;
 
-    public Fish(String id, String name) {
+    public Fish(String id, String name, String species, String waterType, String protectionPeriod,
+                String protectionLength, String description, String imageUrl) {
         this.id = id;
         this.name = name;
+        this.species = species;
+        this.waterType = waterType;
+        this.protectionPeriod = protectionPeriod;
+        this.protectionLength = protectionLength;
+        this.description = description;
+        this.imageUrl = imageUrl;
     }
 
 }
