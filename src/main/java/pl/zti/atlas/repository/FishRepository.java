@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface FishRepository extends MongoRepository<Fish, String> {
 
-    public List<Fish> findAllByNameContainsAndSpeciesContainsAndWaterTypeContains(
-            String name, String species, String waterType);
+    List<Fish> findAllByNameContainsIgnoreCaseAndSpeciesContainsIgnoreCaseAndWaterTypeContainsIgnoreCase(
+        String name, String species, String waterType);
 
 }

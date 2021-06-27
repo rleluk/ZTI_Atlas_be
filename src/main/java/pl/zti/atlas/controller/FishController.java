@@ -59,10 +59,10 @@ public class FishController {
         }
     }
 
-    @PutMapping("/fish")
-    public ResponseEntity<Fish> updateFish(@RequestBody Fish fish) {
+    @PutMapping("/fish/{id}")
+    public ResponseEntity<Fish> updateFish(@PathVariable("id") String id, @RequestBody Fish fish) {
         try {
-            Fish updatedFish = fishService.updateFish(fish);
+            Fish updatedFish = fishService.updateFish(id, fish);
             return new ResponseEntity<>(updatedFish, HttpStatus.OK);
         } catch(NotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

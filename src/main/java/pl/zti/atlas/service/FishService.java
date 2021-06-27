@@ -24,7 +24,8 @@ public class FishService {
     }
 
     public List<Fish> findFishes(String name, String species, String waterType) {
-        return fishRepository.findAllByNameContainsAndSpeciesContainsAndWaterTypeContains(name, species, waterType);
+        return fishRepository.findAllByNameContainsIgnoreCaseAndSpeciesContainsIgnoreCaseAndWaterTypeContainsIgnoreCase(
+                name, species, waterType);
     }
 
     public Fish save(Fish fish) {
@@ -38,8 +39,8 @@ public class FishService {
         return fishRepository.findById(id);
     }
 
-    public Fish updateFish(Fish fish) {
-        Optional<Fish> fishData = this.findById(fish.getId());
+    public Fish updateFish(String id, Fish fish) {
+        Optional<Fish> fishData = this.findById(id);
 
         if (fishData.isPresent()) {
             Fish oldFish = fishData.get();
