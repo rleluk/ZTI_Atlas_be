@@ -9,9 +9,9 @@ import pl.zti.atlas.model.Fish;
 import pl.zti.atlas.service.FishService;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
+@RequestMapping("/atlas")
 public class FishController {
 
     private final FishService fishService;
