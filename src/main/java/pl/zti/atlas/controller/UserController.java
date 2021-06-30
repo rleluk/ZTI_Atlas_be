@@ -11,7 +11,7 @@ import pl.zti.atlas.model.Credentials;
 import pl.zti.atlas.model.Token;
 import pl.zti.atlas.model.User;
 import pl.zti.atlas.model.UserRole;
-import pl.zti.atlas.security.SecretKeyGenerator;
+import pl.zti.atlas.security.SecretKey;
 import pl.zti.atlas.service.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -46,7 +46,7 @@ public class UserController {
                     .claim("role", user.getRole())
                     .setIssuedAt(new Date(System.currentTimeMillis()))
                     .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
-                    .signWith(SignatureAlgorithm.HS256, SecretKeyGenerator.getSecretKeyBytes())
+                    .signWith(SignatureAlgorithm.HS256, SecretKey.getBytes())
                     .compact();
 
                 return new ResponseEntity<>(new Token(token), HttpStatus.OK);

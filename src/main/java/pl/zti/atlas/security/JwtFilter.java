@@ -23,14 +23,14 @@ public class JwtFilter extends BasicAuthenticationFilter {
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
         String header = request.getHeader("Authorization");
 
         if (header == null || !header.startsWith("Bearer ")) {
             SecurityContextHolder.getContext().setAuthentication(null);
         } else {
             UsernamePasswordAuthenticationToken authResult = authenticateByToken(header).orElse(null);
-
             SecurityContextHolder.getContext().setAuthentication(authResult);
         }
 
@@ -40,7 +40,7 @@ public class JwtFilter extends BasicAuthenticationFilter {
     private Optional<UsernamePasswordAuthenticationToken> authenticateByToken(String header) {
         try {
             Jws<Claims> claims = Jwts.parser()
-                    .setSigningKey(SecretKeyGenerator.getSecretKeyBytes())
+                    .setSigningKey(SecretKey.getBytes())
                     .parseClaimsJws(header.replace("Bearer ", ""));
 
             String email = claims.getBody().get("email").toString();
